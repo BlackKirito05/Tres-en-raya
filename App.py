@@ -104,7 +104,7 @@ def Jugar():
             Jugador="X"
     if not ok:
         DibujarTablero()
-        print("!Ha ocurrido un empate!")
+        print("\n!Ha ocurrido un empate!")
 
 Jugar()
 
