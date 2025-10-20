@@ -84,6 +84,34 @@ def ElegirModo():
             case _:
                 print("Elige una de las opciones")
 
+def MoverFichas(jugador,modo):
+    import random
+    while True:
+        print(f"\nTurno jugador {jugador}")
+        if modo==True and jugador=="O":
+            ocupados=[k for k,v in posiciones.items() if v=="O"]
+            ficha=random.choice(ocupados)
+            libres=[k for k,v in posiciones.items() if v=="-"]
+            posicion=random.choice(libres)
+        else:
+            ficha=input("Introduce la posición de la ficha que quieres mover :  ")
+            posicion=input("Introduce la posición nueva : ")
+
+
+        if ficha not in posiciones:
+            print("La posicion de tu ficha es incorrecta")
+        elif posiciones[ficha] != jugador:
+            print("La ficha que has selecionado es del otro jugador ")
+        elif posicion not in posiciones:
+            print("Posición no valida")
+        elif posiciones[posicion] != "-":
+            print("Posición ocupada")
+        else:
+            posiciones[ficha] = "-"
+            posiciones[posicion] = jugador
+            print(f" Ficha movida")
+            break
+
 def Jugar():
     print("-- Tres en raya --")
     Modo=ElegirModo()
@@ -92,9 +120,12 @@ def Jugar():
     FichasO=3
     ok=False
 
-    while not ok and (FichasO>0 or FichasX>0):
+    while not ok:
         DibujarTablero()
-        ComprobarEntrada(Jugador,Modo)
+        if FichasX<=0 and FichasO<=0:
+            MoverFichas(Jugador,Modo)
+        else:
+            ComprobarEntrada(Jugador,Modo)
         ok=ComprobarGanador(Jugador)
         if Jugador=="X":
             FichasX-=1
@@ -102,9 +133,8 @@ def Jugar():
         else:
             FichasO-=1
             Jugador="X"
-    if not ok:
-        DibujarTablero()
-        print("\n!Ha ocurrido un empate!")
+        
+
 
 Jugar()
 
