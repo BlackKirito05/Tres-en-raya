@@ -73,9 +73,9 @@ def ComprobarGanador(jugador):
             
 def ElegirModo():
     while True:
-        print("1. Modo individual")
+        print("\n1. Modo individual")
         print("2. Modo 2 Jugadores")
-        modo=input("Opcion : ")     
+        modo=input("\nOpcion : ")     
         match modo:
             case "1":
                 return True
@@ -109,7 +109,7 @@ def MoverFichas(jugador,modo):
         else:
             posiciones[ficha] = "-"
             posiciones[posicion] = jugador
-            print(f" Ficha movida")
+            print(f"Ficha movida")
             break
 
 def Jugar():
